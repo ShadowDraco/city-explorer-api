@@ -4,7 +4,6 @@ class Forecast {
 
 		let descriptionTemplate = `Temperature of ${forecast.temp}, feels ${forecast.app_temp} with ${forecast.weather.description}`
 		this.description = descriptionTemplate
-		console.log(this)
 	}
 }
 module.exports = Forecast

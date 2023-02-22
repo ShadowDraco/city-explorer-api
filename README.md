@@ -23,6 +23,7 @@ This application uses an express server and cors to manage requests from the fro
 
 - 02-21-2023 10:00am - branched for refactoring weather api and adding move API
 - 02-21-2023 10:50am - added weather route and refactored to include real api
+- 02-21-2023 12:25am - almost finished implementing new movie api
 
 ## Credit and Collaborations
 
