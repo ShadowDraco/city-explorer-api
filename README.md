@@ -21,4 +21,6 @@ This application uses an express server and cors to manage requests from the fro
 
 ## Credit and Collaborations
 
--
+Code review and whiteboard with:
+
+- [Kawika Miller](https://github.com/KMArtwork)
