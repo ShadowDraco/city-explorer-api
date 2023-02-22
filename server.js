@@ -4,61 +4,26 @@ const app = express()
 require('dotenv').config()
 const port = process.env.port // get port from .env
 
-// include the weather data to read
-const weatherData = require('./data/weather.json')
-// include the forecast object to send to the client
-// include the forecast object to send to the client
-const Forecast = require('./Forecast')
-
+// require cors to manage requests between two servers
 const cors = require('cors')
+// use cors when making requests
 app.use(cors())
+// include express.json which allows express to recognize and use JSON in requests
 app.use(express.json())
+// lets you use requests and responses that are url encoded. does what express.json does but for urlencoded things
+//app.use(express.urlencoded({ extended: false }))
 
+// get requests from the 'root route'
 app.get('/', (req, res) => {
 	console.log('home route accessed')
-	res.send('Welcome')
+	res.send('Welcome') // send information back to the client
 })
 
-app.post('/weather', (req, res) => {
-	console.log('getting weather')
+// include the route for weather
+const weatherRoute = require('./routes/weather')
+app.use('/weather', weatherRoute) // use the route on incoming requests
 
-	const lat = req.body.lat
-	const lon = req.body.lon
-	const searchQuery = req.body.searchQuery
-
-	let forecasts
-	let location = weatherData.filter(location => {
-		if (
-			// lat and lon are not accurate from the API to the JSON
-			//location.lat === lat &&
-			location.city_name === searchQuery
-			//location.lon === lon
-		) {
-			console.log('found loc')
-			return location
-		} else {
-			return false
-		}
-	})
-
-	if (location.length > 0) {
-		forecasts = location[0].data.map(forecast => {
-			let description = `Low of ${forecast.low_temp}, high of ${forecast.high_temp} with ${forecast.weather.description}`
-			return new Forecast(description, forecast.datetime)
-		})
-
-		res.status(200).send(forecasts)
-	} else {
-		res
-			.status(500)
-			.send(`no weather information for ${searchQuery} at the moment`)
-	}
-})
-
-app.use('*', (req, res) => {
-	res.status(404).send('That page is not found! ):')
-})
-
+// listen for requests
 app.listen(port, (req, res) => {
 	console.log(`Running on port: ${port}`)
 	console.log(process.env.TEST_VAR)
