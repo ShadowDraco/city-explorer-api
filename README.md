@@ -29,3 +29,5 @@ This application uses an express server and cors to manage requests from the fro
 Day 2 Code review and whiteboard with:
 
 - [Kawika Miller](https://github.com/KMArtwork)
+
+![Whiteboard plan](./whiteboards/CityExplorer2.png)

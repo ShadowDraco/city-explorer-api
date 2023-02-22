@@ -23,6 +23,9 @@ app.get('/', (req, res) => {
 const weatherRoute = require('./routes/weather')
 app.use('/weather', weatherRoute) // use the route on incoming requests
 
+const movieRoute = require('./routes/movies')
+app.use('/movies', movieRoute)
+
 // listen for requests
 app.listen(port, (req, res) => {
 	console.log(`Running on port: ${port}`)
