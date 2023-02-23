@@ -30,6 +30,9 @@ This application uses an express server and cors to manage requests from the fro
 - 02-21-2023 5:45pm - finished deployment
 
 - 02-22-2023 7:50am - branched for refactoring
+- 02-22-2023 8:15am - commented code and refactored
+- 02-23-2023 9:58am - fixes weather request, providing multiple forecasts
+- 02-23-2023 10:05am - adds weekday date to weather component
 
 ## Credit and Collaborations
 
