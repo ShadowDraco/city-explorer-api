@@ -24,11 +24,14 @@ This application uses an express server and cors to manage requests from the fro
 - 02-21-2023 10:00am - branched for refactoring weather api and adding move API
 - 02-21-2023 10:50am - added weather route and refactored to include real api
 - 02-21-2023 12:25am - almost finished implementing new movie api
+- 02-21-2023 2:45pm - adds successful movie api queries to client
+- 02-21-2023 4:20pm - adds support for when request limit is reached
 
 ## Credit and Collaborations
 
-Day 2 Code review and whiteboard with:
+Day 2 and 3 Code review and whiteboard with:
 
 - [Kawika Miller](https://github.com/KMArtwork)
 
 ![Whiteboard plan](./whiteboards/CityExplorer2.png)
+![Whiteboard plan](./whiteboards/CityExplorer3.png)

@@ -17,13 +17,14 @@ router.post('/', async (req, res) => {
 			params: {
 				language: 'en-US',
 				with_keywords: encodeURI(searchQuery),
-				api_key: process.env.REACT_APP_TMDB_ACCES_TOKEN,
+				api_key: process.env.REACT_APP_TMDB_ACCESS_TOKEN,
 			},
 		})
 		.then(res => {
 			movies = res.data.results.map(movie => {
 				return new Movie(movie)
 			})
+
 			status = { status: 200, data: movies }
 		})
 		.catch(err => {
