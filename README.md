@@ -27,6 +27,9 @@ This application uses an express server and cors to manage requests from the fro
 - 02-21-2023 2:45pm - adds successful movie api queries to client
 - 02-21-2023 4:20pm - adds support for when request limit is reached
 - 02-21-2023 4:26pm - adds start script
+- 02-21-2023 5:45pm - finished deployment
+
+- 02-22-2023 7:50am - branched for refactoring
 
 ## Credit and Collaborations
 
