@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
 		})
 		.catch(err => {
 			console.log('ERROR CALLING WEATHER API')
-			console.log(err.message, '\n\n', err)
+			console.log(err.message, '\n\n', err.response.data)
 			// set items to send to client
 			status = {
 				status: 500,

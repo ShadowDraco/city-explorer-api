@@ -7,7 +7,7 @@ const axios = require('axios')
 
 // helper function for clean code
 const createMovies = movies => {
-	movies.map(movie => {
+	return movies.map(movie => {
 		return new Movie(movie)
 	})
 }
@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
 	let movies = []
 
 	const searchQuery = req.body.searchQuery
+
 	const movieParams = {
 		language: 'en-US',
 		query: encodeURI(searchQuery),
@@ -37,7 +38,7 @@ router.post('/', async (req, res) => {
 			status = { status: 200, data: movies }
 		})
 		.catch(err => {
-			console.log(err.message, '\n\n', err)
+			console.log(err.message, '\n\n', err.response)
 			// update status error message to send to client
 			status = { status: 500, data: `Error finding movies from ${searchQuery}` }
 		})
