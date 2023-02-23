@@ -3,7 +3,7 @@ const express = require('express')
 // make a 'branch' of our express 'app' called router
 const router = express.Router()
 // include the forecast object to send to the client
-const Forecast = require('../Forecast')
+const Forecast = require('../lib/Forecast')
 // include axios to let the server also make requests
 const axios = require('axios')
 
@@ -45,15 +45,16 @@ router.post('/', async (req, res) => {
 			})
 
 			// set items to send to client
-			status.status = 200
-			status.data = forecasts
+			status = { status: 200, data: forecasts }
 		})
 		.catch(err => {
 			console.log('ERROR CALLING WEATHER API')
 			console.log(err.message, '\n\n', err)
 			// set items to send to client
-			status.data = `There is no weather data for ${searchQuery} right now.`
-			status.status = 500
+			status = {
+				status: 500,
+				data: `There is no weather data for ${searchQuery} right now.`,
+			}
 		})
 
 	// send to client
