@@ -26,17 +26,19 @@ router.post('/', async (req, res) => {
 		lon: lon,
 		//city: searchQuery,
 		key: process.env.REACT_APP_WEATHER_BIT_ACCESS_TOKEN,
-		// farenheit, mph, etc
+		// fahrenheit, mph, etc
 		units: 'i',
+		days: 5,
 	}
 
 	// request weather data
 	let weatherData = await axios
-		.get(`https://api.weatherbit.io/v2.0/current`, {
+		.get(`https://api.weatherbit.io/v2.0/forecast/daily`, {
 			// Params go directly into the queryString
 			params: weatherParams,
 		})
 		.then(res => {
+			console.log(res.data)
 			// create forecast objects
 			forecasts = res.data.data.map(forecast => {
 				return new Forecast(forecast)
