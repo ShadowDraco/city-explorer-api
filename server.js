@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 // make dotenv work
 require('dotenv').config()
-const port = process.env.port // get port from .env
+const port = process.env.PORT // get port from .env
 
 // require cors to manage requests between two servers
 const cors = require('cors')
