@@ -1,4 +1,6 @@
+// include express server module
 const express = require('express')
+// initialize an express server
 const app = express()
 // make dotenv work
 require('dotenv').config()
@@ -30,9 +32,11 @@ app.get('/', (req, res) => {
 const weatherRoute = require('./routes/weather')
 app.use('/weather', weatherRoute) // use the route on incoming requests
 
+// include the route for movies
 const movieRoute = require('./routes/movies')
 app.use('/movies', movieRoute)
 
+// check if the server is running and healthy at any time
 app.get('/healthy', (req, res) => {
 	console.log('health route accessed')
 	res.status(200).send('healthy')
@@ -41,5 +45,4 @@ app.get('/healthy', (req, res) => {
 // listen for requests
 app.listen(port, (req, res) => {
 	console.log(`Running on port: ${port}`)
-	console.log(process.env.TEST_VAR)
 })
