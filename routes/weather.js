@@ -21,17 +21,20 @@ router.post('/', async (req, res) => {
 	const lon = req.body.lon
 	const searchQuery = req.body.searchQuery
 
+	const weatherParams = {
+		lat: lat,
+		lon: lon,
+		//city: searchQuery,
+		key: process.env.REACT_APP_WEATHER_BIT_ACCESS_TOKEN,
+		// farenheit, mph, etc
+		units: 'i',
+	}
+
 	// request weather data
 	let weatherData = await axios
 		.get(`https://api.weatherbit.io/v2.0/current`, {
 			// Params go directly into the queryString
-			params: {
-				lat: lat,
-				lon: lon,
-				//city: searchQuery,
-				key: process.env.REACT_APP_WEATHER_BIT_ACCESS_TOKEN,
-				units: 'i',
-			},
+			params: weatherParams,
 		})
 		.then(res => {
 			// create forecast objects
@@ -39,17 +42,19 @@ router.post('/', async (req, res) => {
 				return new Forecast(forecast)
 			})
 
+			// set items to send to client
 			status.status = 200
 			status.data = forecasts
 		})
 		.catch(err => {
 			console.log('ERROR CALLING WEATHER API')
 			console.log(err.message, '\n\n', err)
-
+			// set items to send to client
 			status.data = `There is no weather data for ${searchQuery} right now.`
 			status.status = 500
 		})
 
+	// send to client
 	res.status(status.status).send(status.data)
 })
 
