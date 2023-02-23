@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const Movie = require('../Movie')
+const Movie = require('../lib/Movie')
 
 const axios = require('axios')
 
