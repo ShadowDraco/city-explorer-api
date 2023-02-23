@@ -6,8 +6,15 @@ const port = process.env.port // get port from .env
 
 // require cors to manage requests between two servers
 const cors = require('cors')
+
+const corsOptions = {
+	origin: 'http://localhost:3000',
+
+	credentials: true, //access-control-allow-credentials:true
+	optionSuccessStatus: 200,
+}
 // use cors when making requests
-app.use(cors())
+app.use(cors(corsOptions))
 // include express.json which allows express to recognize and use JSON in requests
 app.use(express.json())
 // lets you use requests and responses that are url encoded. does what express.json does but for urlencoded things
