@@ -37,6 +37,7 @@ This application uses an express server and cors to manage requests from the fro
 - 02-23-2023 4:44pm - fixes dateDay for forecasts
 
 - 02-24-2023 8:40am - branch for performance like caching
+- 02-24-2023 1:35pm - adds local cache to server for movies and weather
 
 ## Credit and Collaborations
 
