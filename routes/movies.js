@@ -6,7 +6,7 @@ const Movie = require('../lib/Movie')
 const axios = require('axios')
 
 // store previous requests to reference later
-const Cache = require('../lib/cache.js')
+const Cache = require('../lib/Cache.js')
 const cache = new Cache()
 
 // helper function for clean code
