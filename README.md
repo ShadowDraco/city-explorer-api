@@ -34,6 +34,7 @@ This application uses an express server and cors to manage requests from the fro
 - 02-23-2023 9:58am - fixes weather request, providing multiple forecasts
 - 02-23-2023 10:05am - adds weekday date to weather component
 - 02-23-2023 11:57am - adds lib folder to better organize modules
+- 02-23-2023 4:44pm - fixes dateDay for forecasts
 
 ## Credit and Collaborations
 
