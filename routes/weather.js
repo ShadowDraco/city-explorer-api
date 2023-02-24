@@ -8,7 +8,7 @@ const Forecast = require('../lib/Forecast')
 const axios = require('axios')
 
 // store previous requests to reference later
-const Cache = require('../lib/cache.js')
+const Cache = require('../lib/Cache.js')
 const cache = new Cache()
 
 // let the router search for and handle its own routes starting at the
