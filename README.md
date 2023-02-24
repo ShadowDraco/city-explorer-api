@@ -34,12 +34,17 @@ This application uses an express server and cors to manage requests from the fro
 - 02-23-2023 9:58am - fixes weather request, providing multiple forecasts
 - 02-23-2023 10:05am - adds weekday date to weather component
 - 02-23-2023 11:57am - adds lib folder to better organize modules
+- 02-23-2023 4:44pm - fixes dateDay for forecasts
+
+- 02-24-2023 8:40am - branch for performance like caching
+- 02-24-2023 1:35pm - adds local cache to server for movies and weather
 
 ## Credit and Collaborations
 
-Day 2 and 3 Code review and whiteboard with:
+Day 2 and 3, and 4 Code review and whiteboard with:
 
 - [Kawika Miller](https://github.com/KMArtwork)
 
 ![Whiteboard plan](./whiteboards/CityExplorer2.png)
 ![Whiteboard plan](./whiteboards/CityExplorer3.png)
+![Whiteboard plan](./whiteboards/CityExplorer4.png)

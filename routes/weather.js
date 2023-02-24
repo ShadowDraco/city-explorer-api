@@ -7,29 +7,51 @@ const Forecast = require('../lib/Forecast')
 // include axios to let the server also make requests
 const axios = require('axios')
 
+// store previous requests to reference later
+const Cache = require('../lib/cache.js')
+const cache = new Cache()
+
 // let the router search for and handle its own routes starting at the
 // route defined in server.js .... '/weather'
 
 // this means to check (url)/weather/
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
 	console.log('getting weather')
 	let status = {}
-	let forecasts = []
-
-	// get the query from request
-	const lat = req.body.lat
-	const lon = req.body.lon
-	const searchQuery = req.body.searchQuery
+	const lat = req.query.lat
+	const lon = req.query.lon
+	const searchQuery = req.query.searchQuery
 
 	const weatherParams = {
 		lat: lat,
 		lon: lon,
-		//city: searchQuery,
+		city: searchQuery,
 		key: process.env.REACT_APP_WEATHER_BIT_ACCESS_TOKEN,
 		// fahrenheit, mph, etc
 		units: 'i',
 		days: 5,
 	}
+
+	// create a key to check against the cache
+	const key = 'weather-' + lat + lon
+
+	let oldWeather = cache.checkCache(key)
+
+	status =
+		oldWeather !== false
+			? { status: 200, data: oldWeather }
+			: await requestWeather(key, status, weatherParams)
+
+	// send to client
+
+	res.status(status.status).send(status.data)
+})
+
+const requestWeather = async (key, status, weatherParams) => {
+	// make a request to the weather api and modify the status from the route that requested it.
+	// get the query from request
+
+	let forecasts = []
 
 	// request weather data
 	let weatherData = await axios
@@ -38,11 +60,12 @@ router.post('/', async (req, res) => {
 			params: weatherParams,
 		})
 		.then(res => {
-			console.log(res.data)
 			// create forecast objects
 			forecasts = res.data.data.map(forecast => {
 				return new Forecast(forecast)
 			})
+			// add forecasts to the cache
+			cache.updateCache(key, forecasts)
 
 			// set items to send to client
 			status = { status: 200, data: forecasts }
@@ -53,12 +76,11 @@ router.post('/', async (req, res) => {
 			// set items to send to client
 			status = {
 				status: 500,
-				data: `There is no weather data for ${searchQuery} right now.`,
+				data: `There is no weather data for ${weatherParams.searchQuery} right now.`,
 			}
 		})
 
-	// send to client
-	res.status(status.status).send(status.data)
-})
+	return status
+}
 
 module.exports = router
